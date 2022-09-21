@@ -15,6 +15,7 @@ Made using:
 
 ## Installation
 
+- Download the zip from the realese tab
 - Open the School.exe application.
 - Cntrl+click on one of the two links.
 - Create an account and everything is good to go!
