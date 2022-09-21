@@ -1,0 +1,144 @@
+body{
+  background-color: #ECEBE4;
+}
+input{
+  border: none;
+  outline: none;
+  color: #CC998D;
+  transition: background-color 0.3s;
+}
+a{
+  cursor: pointer;
+}
+input:focus{
+  background-color: #FFDFBF;
+}
+.NormalButton{
+  margin-left: 1rem;
+  padding: 10px 30px; 
+  border: none;
+  background-color: white;
+  color: #CC998D;
+  border-radius: 11px;
+  transition: background-color 0.2s, border-radius 0.2s;
+}
+.NormalButton:hover{
+  background-color: #E5E5E5;
+  border-radius: 34px;
+}
+h2, h3{
+  color: #CC998D;
+}
+.Main{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.Main div{
+  margin-top: 10em;
+}
+.icon{
+  background:none;
+  border:none;
+  cursor: pointer;
+}
+.Main h2{
+  font-size: 3vw;
+}
+p{
+  color: #CC998D;
+}
+.Menu{
+  position: fixed;
+  font-size: 3rem;
+  top: 0;
+  margin-left: 0.6rem;
+  text-decoration: underline;
+  color:#CC998D;
+  cursor: pointer;
+} 
+#WelcomeName{
+  display: flex;
+  justify-content: center;
+  font-size: 3vw;
+}
+.Bar{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+.Bar button{
+  margin-top: 40px;
+  border: none;
+  font-size: 2vw;
+}
+.RelArrow{
+  transition: transform 0.5s;
+}
+.RelArrow:hover{
+  transform: rotate(-30deg);
+}
+.RelArrowClicked{
+  transition: transform 0.5s;
+}
+.RelArrowClicked{
+  transform: rotate(-90deg);
+}
+.TaskBar{
+  background: white !important;
+}
+.TaskBar button{
+  font-size: 3vw;
+}
+.TaskBar img{
+  width: 90px;
+}
+.TBSelected{
+  background-color: grey;
+}
+select{
+  background-color: #FFFFFF;
+  color: #CC998D;
+  border: none;
+  font-size: 1.2vw;
+  border-radius: 8px;
+  outline: none;
+}
+.SignInButtons{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.SignInButtons button{
+  margin-bottom: 10px;
+}
+.image-carousel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.MainText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.MainText p{
+  font-size: 1.4vw;
+  text-align: center;
+}
+.Settings{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.UserText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

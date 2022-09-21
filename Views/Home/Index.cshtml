@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="Main">
+    <div class="MainText">
+        <h2>Welcome To Schoolwind!</h2>
+        <p>Here you can manage your school's students, subjects and <br> classrooms. It's easy to use and quite flexible on what you <br> can do with it!</p>
+    </div>
+    <div class="image-carousel">
+      <img class="image" src="https://cdn.discordapp.com/attachments/762293239519903764/1021876237171425320/Screenshot_2022-09-20_230911.png">
+      <img class="image" src="https://cdn.discordapp.com/attachments/762293239519903764/1021876239276965968/Screenshot_2022-09-20_231052.png" style="display: none;">
+      <img class="image" src="https://cdn.discordapp.com/attachments/762293239519903764/1021876239667044382/Screenshot_2022-09-20_231105.png" style="display: none;">
+      <button class="Carousel-button icon"onclick="MoveCarousel(-1)"><img class="icon" style="transform: rotate(-90deg);" src="https://cdn.discordapp.com/attachments/762293239519903764/1021865462302249101/icons8-double-up-30.png"></button>
+      <button class="Carousel-button icon"onclick="MoveCarousel(1)"><img class="icon" style="transform: rotate(90deg);" src="https://cdn.discordapp.com/attachments/762293239519903764/1021865462302249101/icons8-double-up-30.png"></button>
+  </div>
+  <div>
+    <h3>Don't have an account yet? <a asp-action="SignUp">Sign Up!</a></h3>
+  </div>
+</div>
+
+<script>
+
+</script> 

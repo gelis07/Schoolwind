@@ -1,0 +1,14 @@
+@page
+@model AccountsModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+<partial name="Bar.cshtml" />
+<body>
+
+    @{
+        int? id = Accessor.HttpContext.Session.GetInt32("UserID");
+        dynamic name = GetSqlData.GetData("SELECT SchoolName FROM accounts WHERE id="+id);
+        <p id="WelcomeName">Welcome @name["Data"][0]</p>
+    }
+    <h3 style="display: flex;justify-content: center; align-items:center;">Any questions? <a href="mailto: schoolmanagementprofessional@gmail.com">Ask Us</a></h3>
+</body>

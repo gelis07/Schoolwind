@@ -1,0 +1,63 @@
+/*
+.Students{
+  display: grid;
+  align-items: center;
+}
+*/
+.StudentsRow{
+    position: relative;
+    display: flex;
+}
+.StudentsRow h2{
+    margin-left: 0px;
+    margin-right: 50px;
+}
+.SearchRow{
+    position: relative;
+    display: flex;
+}
+.SearchRow h2{
+    margin-left: 0px;
+    margin-right: 50px;
+}
+.TaskBar{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top:30%;
+    left:10%;
+}
+.TaskBar form{
+    margin-top: 30%;
+}
+#Title{
+    display: flex;
+    justify-content: center;
+}
+.Bar input{
+    width: 60%;
+}
+/*RELATIONS*/
+/*----------------------------*/
+.relations{
+    display: flex;
+    justify-content:end;
+    flex-direction: column;
+    margin-left: 10rem;
+    
+}
+.relations input{
+    width: 100%;
+    margin: 0px;
+}
+.main{
+    display: flex;
+    flex-direction: row;  
+}
+#X{
+    position: relative;
+    width: 5%;
+    top: 0%;
+    left: 100%;
+}

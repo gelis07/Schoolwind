@@ -1,0 +1,16 @@
+.image-carousel{
+  height: 459px;
+  width: 960px;
+}
+.image{
+  position: absolute;
+  height: 459px;
+  width: 960px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
+}
+.Carousel-button{
+  position: relative;
+  top: 110%;
+  left: 46%;
+}

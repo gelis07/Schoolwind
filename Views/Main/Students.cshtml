@@ -1,0 +1,104 @@
+@page
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor Accessor;
+
+<partial name="TaskBar.cshtml" />
+<body>
+    @{
+        ManageModel Manage = (ManageModel)BinaryConv.ByteArrayToObject(Accessor.HttpContext.Session.Get("ManageModel"));
+    }
+    <h2 id="Title">@Manage.Name</h2>
+    <br>
+    @{
+        string command = Accessor.HttpContext.Session.GetString(Manage.InsCommand);
+        string IDcommand = Accessor.HttpContext.Session.GetString(Manage.IdCommand);
+        dynamic Students = GetSqlData.GetData(command);
+        dynamic Ids = GetSqlData.GetData(IDcommand);
+        @Html.Raw("<div class='Sort'>");
+            @Html.Raw("<select name='SortDd' id='sort'>");
+                for (int i = 0; i < Manage.columns.Length; i++)
+                {
+                    string val = Manage.columns[i].Replace(" ", "");
+                    <option value=@val>@Manage.columns[i]</option>
+                }
+            @Html.Raw("</select>");
+        @Html.Raw("</div>");
+        @Html.Raw("<div class='main'>");
+            @Html.Raw("<div class='Students'>");
+                @Html.Raw("<div style='left: 0px' class='StudentsRow'>") 
+                    for (var i = 0; i < Manage.columns.Length; i++)
+                    {
+                        string val = Manage.columns[i].Replace(" ", "");
+                        <a onclick="SearchButton(@Manage.Search, '@Manage.table', '@val')"><h2>@Manage.columns[i]</h2></a>
+                    }
+                @Html.Raw("</div>") 
+                @Html.Raw("<div style='left: 0px' class='SearchRow'>")
+                    for (var i = 0; i < Manage.columns.Length; i++)
+                    {
+                        <input placeholder="Search...">
+                    }
+                    <button title="Search" onclick="Search(@Manage.Search, '@Manage.table')" class='icon'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                            width="30" height="30"
+                                                                            viewBox="0 0 30 30"
+                                                                            style=" fill:#CC998D;"><path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path></svg></button>
+                @Html.Raw("</div>")
+                for (int i = 0; i < Students["Data"].Length/Students["Columns"]; i++)
+                {
+                    @Html.Raw("<div class='StudentsRow' id="+i+">");
+                        for (int j = 0; j < Students["NewData"]["Row"+i].Length; j++)
+                        {
+                            var item = Students["NewData"]["Row"+i];
+                            DateTime dateValue;
+                            if(DateTime.TryParse(item.ToString(), out dateValue))
+                            {
+                                string date = dateValue.ToString("yyyy-MM-dd");
+                                <input value=@date>
+                            }else
+                            {
+                                <input value=@item[j]>
+                            }
+                            
+                        }
+                        if(Manage.Relation != null){
+                            if(Manage.Name != "Subjects"){
+                                <button onclick="ShowRelations(@Ids["Data"][i], '@Students["NewData"]["Row"+i][0]', this)" class="RelArrow icon"><img src="https://cdn.discordapp.com/attachments/762293239519903764/1017780692760936459/icons8-expand-arrow-30.png"></button>
+                            }else{
+                                <button onclick="ShowRelations(@Ids["Data"][i], '@Students["NewData"]["Row"+i][0]', this, true)" class="RelArrow icon"><img src="https://cdn.discordapp.com/attachments/762293239519903764/1017780692760936459/icons8-expand-arrow-30.png"></button>
+                            }
+                            
+                        }
+                        <button title="Delete this row" onclick="DeleteRow(this)" class='icon'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                width="30" height="30"
+                                                viewBox="0 0 30 30"
+                                                style=" fill:#CC998D;">
+                                                <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path></svg></button>
+                    @Html.Raw("</div>");
+                }
+            @Html.Raw("</div>");
+        @Html.Raw("</div>");
+        string arrayString = "";
+        string ColumnString = "";
+        if(Ids["Data"].Length > 0) arrayString = ""+Ids["Data"][0];
+        if(Manage.Sqlcolumns.Length > 0) ColumnString = "'"+Manage.Sqlcolumns[0]+"'";
+        for (int i = 1; i < Ids["Data"].Length; i++)
+        {
+            arrayString += ","+Ids["Data"][i]+"";
+        }
+        for (int i = 1; i < Manage.Sqlcolumns.Length; i++)
+        {
+            ColumnString += ",'"+Manage.Sqlcolumns[i]+"'";
+        }
+        arrayString ="["+arrayString+"]";
+        ColumnString ="["+ColumnString+"]";
+    }
+    <br>
+    <button title="Insert another row" onclick='AddItems(@Students["Columns"])' class="icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="30" height="30"
+viewBox="0 0 30 30"
+style=" fill:#CC998D;">    <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path></svg></button>
+    <button title="Update the database" onclick="Update('@Manage.table', @arrayString, @ColumnString)" class="icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="30" height="30"
+                                    viewBox="0 0 30 30"
+                                    style=" fill:#CC998D;"><path d="M 15 3 C 8.9134751 3 3.87999 7.5533546 3.1132812 13.439453 A 1.0001 1.0001 0 1 0 5.0957031 13.697266 C 5.7349943 8.7893639 9.9085249 5 15 5 C 17.766872 5 20.250574 6.1285473 22.058594 7.9414062 L 20 10 L 26 11 L 25 5 L 23.470703 6.5292969 C 21.300701 4.3575454 18.309289 3 15 3 z M 25.912109 15.417969 A 1.0001 1.0001 0 0 0 24.904297 16.302734 C 24.265006 21.210636 20.091475 25 15 25 C 11.977904 25 9.2987537 23.65024 7.4648438 21.535156 L 9 20 L 3 19 L 4 25 L 6.0488281 22.951172 C 8.2452659 25.422716 11.436061 27 15 27 C 21.086525 27 26.12001 22.446646 26.886719 16.560547 A 1.0001 1.0001 0 0 0 25.912109 15.417969 z"></path></svg></button>
+    <div class="error"></div>
+</body>

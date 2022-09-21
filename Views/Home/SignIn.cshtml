@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Sing in";
+}
+
+<div class="text-center">
+    <div class="SignIn">
+        <h2>Welcome back!</h2>
+    </div>
+    <div class="Inputs">
+        <div class="Sign-in">
+            <h2 class="Sign-in-item">Email: </h2>
+            <input name="Email" class="Sign-in-item" id="Email-Input">
+        </div>
+        <div class="Sign-in">
+            <h2 class="Sign-in-item">Password: </h2>
+            <input name="Password" type="password" class="Sign-in-item" id="Password-Input">
+        </div>
+        <div class="SignInButtons">
+            <button onclick="SignInFun()" class="NormalButton">Log in</button>
+            <a href="Email"><button class="NormalButton">Forgot my password</button></a>
+        </div>
+    </div>
+</div>
