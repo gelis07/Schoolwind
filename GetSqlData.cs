@@ -2,7 +2,7 @@ using System;
 using MySql.Data.MySqlClient;
 public class GetSqlData
 {
-    public static string sqlkey = "ogli-oglia";
+    public static string sqlkey = "";
     static Dictionary<string, dynamic> Errors = new Dictionary<string, dynamic>();
     static MySqlConnection conn;
     static string myConnectionString;
