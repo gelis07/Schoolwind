@@ -7,7 +7,7 @@ public class GetSqlData
     static MySqlConnection conn;
     static string myConnectionString;
     public static void AddErrors(){
-        myConnectionString = "server=localhost;uid=root;pwd=XUKt2XFDyMd2Run;database=schools";
+        myConnectionString = "";
         conn = new MySql.Data.MySqlClient.MySqlConnection();
         try
         {
