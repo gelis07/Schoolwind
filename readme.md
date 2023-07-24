@@ -14,11 +14,7 @@ Made using:
 - Visual Studio Code.
 
 ## Installation
-
-- Download the zip from the realese tab
-- Open the School.exe application.
-- Cntrl+click on one of the two links.
-- Create an account and everything is good to go!
+- It's not really made for people to actually use it but people who are interested in the code. 
 
 
 ###### thanks for reading
